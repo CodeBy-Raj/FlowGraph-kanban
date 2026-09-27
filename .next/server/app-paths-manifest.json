@@ -1,9 +1,0 @@
-{
-  "/_not-found/page": "app/_not-found/page.js",
-  "/api/dependencies/route": "app/api/dependencies/route.js",
-  "/api/tasks/route": "app/api/tasks/route.js",
-  "/api/dependencies/[id]/route": "app/api/dependencies/[id]/route.js",
-  "/api/ai/suggest/route": "app/api/ai/suggest/route.js",
-  "/api/tasks/[id]/route": "app/api/tasks/[id]/route.js",
-  "/page": "app/page.js"
-}
