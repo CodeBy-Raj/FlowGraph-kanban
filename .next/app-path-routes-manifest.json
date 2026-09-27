@@ -1,1 +1,1 @@
-{"/_not-found/page":"/_not-found","/api/ai/suggest/route":"/api/ai/suggest","/api/dependencies/[id]/route":"/api/dependencies/[id]","/page":"/","/api/tasks/route":"/api/tasks","/api/tasks/[id]/route":"/api/tasks/[id]","/api/dependencies/route":"/api/dependencies"}
+{"/_not-found/page":"/_not-found","/api/dependencies/route":"/api/dependencies","/api/tasks/route":"/api/tasks","/api/dependencies/[id]/route":"/api/dependencies/[id]","/api/ai/suggest/route":"/api/ai/suggest","/api/tasks/[id]/route":"/api/tasks/[id]","/page":"/"}

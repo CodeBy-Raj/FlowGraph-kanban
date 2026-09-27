@@ -1,6 +1,6 @@
 import React from 'react';
 import { Draggable } from '@hello-pangea/dnd';
-import { Clock, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { Clock, AlertCircle, CheckCircle2, Flame } from 'lucide-react';
 import { ComputedTask } from '@/lib/graph/types';
 
 export default function TaskCard({ task, index }: { task: ComputedTask; index: number }) {
@@ -13,10 +13,21 @@ export default function TaskCard({ task, index }: { task: ComputedTask; index: n
           {...provided.dragHandleProps}
           className={`p-4 mb-3 bg-white rounded-lg border shadow-sm transition-shadow ${
             snapshot.isDragging ? 'shadow-lg ring-2 ring-blue-500' : 'hover:shadow-md'
-          } ${task.isBlocked ? 'border-red-200' : 'border-gray-200'}`}
+          } ${
+            task.isCritical
+              ? 'border-amber-300 ring-1 ring-amber-200 bg-amber-50/20'
+              : task.isBlocked
+              ? 'border-red-200'
+              : 'border-gray-200'
+          }`}
         >
-          <div className="flex justify-between items-start mb-2">
+          <div className="flex justify-between items-start mb-2 gap-2">
             <h4 className="font-semibold text-gray-900 text-sm">{task.title}</h4>
+            {task.isCritical && (
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-semibold text-amber-800 bg-amber-100 rounded border border-amber-300 flex-shrink-0">
+                <Flame size={10} className="text-amber-600" /> CRITICAL
+              </span>
+            )}
           </div>
           
           {/* Dynamic Dependency Status Pill */}
