@@ -1,4 +1,9 @@
+# Environment variables and secrets
 .env
+.env.local
+.env*.local
+
+# Dependencies & Build Outputs
 node_modules
 .next
 dist
