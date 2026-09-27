@@ -1,5 +1,10 @@
 # Environment variables and secrets
+# Environment variables and secrets
 .env
+.env.local
+.env*.local
+
+# Dependencies & Build Outputs
 .env.local
 .env*.local
 
