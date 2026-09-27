@@ -11,6 +11,7 @@
     "db:init": "npx tsx scripts/initDb.ts"
   },
   "dependencies": {
+    "@google/genai": "^2.24.0",
     "@hello-pangea/dnd": "^18.0.1",
     "@neondatabase/serverless": "^1.1.0",
     "dotenv": "^18.0.4",

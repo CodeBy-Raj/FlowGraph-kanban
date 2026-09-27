@@ -1,5 +1,5 @@
 import { Task, Dependency, ComputedTask } from './types';
-import { calculateSchedules } from './cpmEngine';
+import { calculateSchedules, markCriticalPath } from './cpmEngine';
 
 /**
  * Reconciles dynamic task statuses (READY vs BLOCKED) and dates across the dependency graph.
@@ -24,6 +24,9 @@ export function reconcileGraph(
 
   // Calculate schedules using CPM forward pass
   const scheduleMap = calculateSchedules(tasks, dependencies, baselineDateStr);
+
+  // Compute Critical Path nodes
+  const criticalIds = markCriticalPath(tasks, dependencies, scheduleMap);
 
   return tasks.map((task) => {
     const predecessors = predMap.get(task.id) || [];
@@ -55,6 +58,7 @@ export function reconcileGraph(
       dependencyStatus,
       isBlocked,
       blockingPredecessorIds: blockingPredecessors,
+      isCritical: criticalIds.has(task.id),
     };
   });
 }
