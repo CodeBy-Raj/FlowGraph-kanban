@@ -18,6 +18,14 @@ export async function POST(request: NextRequest) {
     // 1. Fetch current topology to validate against
     const { dependencies } = await getAllTasksAndDependencies();
 
+    // Check if dependency already exists
+    const exists = dependencies.some(
+      (d) => d.predecessorId === predecessorId && d.successorId === successorId
+    );
+    if (exists) {
+      return NextResponse.json({ error: 'Dependency already exists' }, { status: 409 });
+    }
+
     // 2. Execute deterministic cycle guardrail (DFS)
     if (willCreateCycle(dependencies, predecessorId, successorId)) {
       return NextResponse.json(
@@ -32,7 +40,6 @@ export async function POST(request: NextRequest) {
 
   } catch (error: any) {
     console.error('Failed to create dependency:', error);
-    // Handle unique constraint violations gracefully
     if (error.message?.includes('duplicate key value')) {
       return NextResponse.json({ error: 'Dependency already exists' }, { status: 409 });
     }
